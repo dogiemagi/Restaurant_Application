@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+    background-color: black;
+    padding: 8px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px 15px;
+}
+
+nav a:hover {
+    background-color: orange;
+    border-radius: 5px;
+}
+
+
+        h1, h2, h3 {
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;            
+        }
+
+        .restaurant-info, .customer-info, .menu, .cart, .receipt {
+            margin-bottom: 30px;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .categories {
+            margin: 20px 0;
+            text-align: center;
+            
+        }
+
+        .categories button {
+            padding: 12px 25px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .categories button:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .payment-methods button {
+            padding: 12px 25px;
+            margin: 10px;
+            font-size: 16px;
+            background-color: #17a2b8;
+        }
+
+        .payment-methods button:hover {
+            background-color: #117a8b;
+            transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .food-item {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .food-item input {
+            margin-right: 10px;
+        }
+
+        .cart-header, .payment-methods {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cart-item {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 5px 0;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        #receipt {
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #e9f7fd;
+        }
+
+        .total-price {
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        input[type="text"], input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus, input[type="tel"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a button {
+            background-color: #ff5722;
+        }
+
+        a button:hover {
+            background-color: #e64a19;
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="promotions.html">Promotions</a>
+            <a href="menu.html">Menu</a>
+            
+        </nav>
+    </header>
+
+<!-- Main Page with Restaurant Info -->
+<div class="container restaurant-info">
+    <h1>Tasty Bites Restaurant</h1>
+    <p>Address: 123 Food Street, Culinary City</p>
+    <p>Contact: +91 8248704626</p>
+    <a href="#customer-form" onclick="showCustomerForm()"><button>Order Now</button></a>
+</div>
+
+<!-- Customer Info Page -->
+<div class="container" id="customer-form" style="display: none;">
+    <h2>Enter Your Details</h2>
+    <form id="customer-details">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required><br><br>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required><br><br>
+
+        <button type="button" onclick="goToMenu()">Proceed to Menu</button>
+    </form>
+</div>
+
+<!-- Menu Page with Categories -->
+<div class="container" id="menu-page" style="display: none;">
+    <div class="menu-header">
+        <h2>Restaurant Menu</h2>
+        <a href="#cart" onclick="viewCart()"><button>View Cart</button></a>
+    </div>
+
+    <!-- Menu Categories -->
+    <div class="categories">
+        <button onclick="showItems('veg')">Veg</button>
+        <button onclick="showItems('non-veg')">Non-Veg</button>
+        <button onclick="showItems('snacks')">Snacks</button>
+    </div>
+
+    <div id="menu-items">
+        <!-- Food items will appear here -->
+    </div>
+</div>
+
+<!-- Cart Page -->
+<div class="container" id="cart" style="display: none;">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div class="total-price">Total: $<span id="cart-total">0.00</span></div>
+
+    <div>
+        <label for="discount-code">Discount Code:</label>
+        <input type="text" id="discount-code" placeholder="Enter Code">
+        <button onclick="applyDiscount()">Apply Discount</button>
+    </div>
+
+    <div class="payment-methods">
+        <button onclick="pay('cash')">Pay with Cash</button>
+        <button onclick="pay('netbanking')">Pay with Net Banking</button>
+    </div>
+</div>
+
+<!-- Receipt Page -->
+<div class="container" id="receipt" style="display: none;">
+    <h2>Payment Receipt</h2>
+    <p><strong>Customer Name:</strong> <span id="receipt-name"></span></p>
+    <p><strong>Address:</strong> <span id="receipt-address"></span></p>
+    <p><strong>Phone:</strong> <span id="receipt-phone"></span></p>
+    <h3>Order Summary</h3>
+    <ul id="receipt-items"></ul>
+    <p><strong>Total:</strong> $<span id="receipt-total"></span></p>
+    <p><strong>Payment Method:</strong> <span id="receipt-method"></span></p>
+    <button onclick="window.location.reload()">Back to Home</button>
+</div>
+
+<script>
+    let customerDetails = {};
+    let cart = [];
+    let discount = 0;
+
+    const vegItems = [
+        { id: 1, name: 'Veg Pizza', price: 8 },
+        { id: 2, name: 'Paneer Butter Masala', price: 10 },
+        { id: 3, name: 'Vegetable Biryani', price: 7 },
+        { id: 4, name: 'Veg Burger', price: 5 },
+        { id: 5, name: 'Aloo Paratha', price: 4 },
+        { id: 6, name: 'Veg Pulao', price: 6 },
+        { id: 7, name: 'Veg Tacos', price: 5 },
+        { id: 8, name: 'Pav Bhaji', price: 6 },
+        { id: 9, name: 'Chana Masala', price: 7 },
+        { id: 10, name: 'Mixed Veg', price: 6 },
+        { id: 11, name: 'Veg Samosa', price: 2 },
+        { id: 12, name: 'Palak Paneer', price: 9 },
+        { id: 13, name: 'Veg Korma', price: 8 },
+        { id: 14, name: 'Dosa', price: 5 },
+        { id: 15, name: 'Idli', price: 4 },
+        { id: 16, name: 'Vada Pav', price: 3 },
+        { id: 17, name: 'Bhel Puri', price: 3 },
+        { id: 18, name: 'Pani Puri', price: 2 },
+        { id: 19, name: 'Sev Puri', price: 3 },
+        { id: 20, name: 'Veg Sandwich', price: 4 }
+    ];
+
+    const nonVegItems = [
+        { id: 1, name: 'Chicken Curry', price: 12 },
+        { id: 2, name: 'Mutton Kebab', price: 15 },
+        { id: 3, name: 'Fish Fry', price: 14 },
+        { id: 4, name: 'Chicken Biryani', price: 11 },
+        { id: 5, name: 'Butter Chicken', price: 13 },
+        { id: 6, name: 'Chicken Tikka', price: 10 },
+        { id: 7, name: 'Mutton Biryani', price: 14 },
+        { id: 8, name: 'Tandoori Chicken', price: 12 },
+        { id: 9, name: 'Prawn Masala', price: 16 },
+        { id: 10, name: 'Fish Curry', price: 14 },
+        { id: 11, name: 'Chicken Nuggets', price: 6 },
+        { id: 12, name: 'Grilled Chicken', price: 15 },
+        { id: 13, name: 'Chicken Wings', price: 8 },
+        { id: 14, name: 'Mutton Rogan Josh', price: 18 },
+        { id: 15, name: 'Fish Tikka', price: 13 },
+        { id: 16, name: 'Mutton Seekh Kebab', price: 16 },
+        { id: 17, name: 'Mutton Nihari', price: 20 },
+        { id: 18, name: 'Prawn Korma', price: 18 },
+        { id: 19, name: 'Tandoori Prawns', price: 19 },
+        { id: 20, name: 'Chicken Shawarma', price: 12 }
+    ];
+
+    const snacksItems = [
+        { id: 1, name: 'French Fries', price: 3 },
+        { id: 2, name: 'Samosa', price: 2 },
+        { id: 3, name: 'Onion Rings', price: 4 },
+        { id: 4, name: 'Spring Rolls', price: 5 },
+        { id: 5, name: 'Popcorn', price: 2 },
+        { id: 6, name: 'Garlic Bread', price: 3 },
+        { id: 7, name: 'Chili Cheese Toast', price: 4 },
+        { id: 8, name: 'Dhokla', price: 3 },
+        { id: 9, name: 'Bhel Puri', price: 2 },
+        { id: 10, name: 'Pani Puri', price: 3 },
+        { id: 11, name: 'Pav Bhaji', price: 5 },
+        { id: 12, name: 'Veg Pakora', price: 4 },
+        { id: 13, name: 'Kachori', price: 3 },
+        { id: 14, name: 'Chana Chaat', price: 3 },
+        { id: 15, name: 'Pineapple Cake', price: 5 },
+        { id: 16, name: 'Fruit Salad', price: 4 },
+        { id: 17, name: 'Chocolate Muffin', price: 2 },
+        { id: 18, name: 'Vegetable Sandwich', price: 4 },
+        { id: 19, name: 'Cheese Sticks', price: 4 },
+        { id: 20, name: 'Cheese Nachos', price: 5 }
+    ];
+
+    // Show customer details page
+    function showCustomerForm() {
+        document.querySelector('.restaurant-info').style.display = 'none';
+        document.getElementById('customer-form').style.display = 'block';
+    }
+
+    // Go to menu page
+    function goToMenu() {
+        customerDetails.name = document.getElementById('name').value;
+        customerDetails.address = document.getElementById('address').value;
+        customerDetails.phone = document.getElementById('phone').value;
+
+        document.getElementById('customer-form').style.display = 'none';
+        document.getElementById('menu-page').style.display = 'block';
+    }
+
+    // Show items based on category
+    function showItems(category) {
+        const menuItemsDiv = document.getElementById('menu-items');
+        menuItemsDiv.innerHTML = '';
+
+        let items = [];
+
+        if (category === 'veg') {
+            items = vegItems;
+        } else if (category === 'non-veg') {
+            items = nonVegItems;
+        } else if (category === 'snacks') {
+            items = snacksItems;
+        }
+
+        items.forEach(item => {
+            const div = document.createElement('div');
+            div.classList.add('food-item');
+            div.innerHTML = `
+                <input type="checkbox" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}" onchange="updateCart()">
+                <span>${item.name} - $${item.price}</span>
+            `;
+            menuItemsDiv.appendChild(div);
+        });
+    }
+
+    // Update the cart with selected items
+    function updateCart() {
+        const selectedItems = document.querySelectorAll('.food-item input:checked');
+        cart = [];
+        let total = 0;
+
+        selectedItems.forEach(item => {
+            const itemId = item.getAttribute('data-id');
+            const itemName = item.getAttribute('data-name');
+            const itemPrice = parseFloat(item.getAttribute('data-price'));
+            cart.push({ id: itemId, name: itemName, price: itemPrice });
+            total += itemPrice;
+        });
+
+        document.getElementById('cart-total').textContent = total.toFixed(2);
+    }
+
+    // View cart items
+    function viewCart() {
+        const cartItemsDiv = document.getElementById('cart-items');
+        cartItemsDiv.innerHTML = '';
+
+        cart.forEach(item => {
+            const div = document.createElement('div');
+            div.classList.add('cart-item');
+            div.innerHTML = `
+                <span>${item.name} - $${item.price}</span>
+            `;
+            cartItemsDiv.appendChild(div);
+        });
+
+        document.getElementById('cart').style.display = 'block';
+    }
+
+    // Apply discount (if any)
+    function applyDiscount() {
+        const discountCode = document.getElementById('discount-code').value;
+        if (discountCode === 'DISCOUNT10') {
+            discount = 10;
+        } else {
+            discount = 0;
+        }
+        updateCart();
+    }
+
+    // Make payment
+    function pay(method) {
+        document.getElementById('menu-page').style.display = 'none';
+        document.getElementById('cart').style.display = 'none';
+
+        const receipt = document.getElementById('receipt');
+        receipt.style.display = 'block';
+
+        document.getElementById('receipt-name').textContent = customerDetails.name;
+        document.getElementById('receipt-address').textContent = customerDetails.address;
+        document.getElementById('receipt-phone').textContent = customerDetails.phone;
+
+        const receiptItems = document.getElementById('receipt-items');
+        let total = 0;
+        cart.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.name} - $${item.price}`;
+            receiptItems.appendChild(li);
+            total += item.price;
+        });
+
+        const finalTotal = total - (total * discount / 100);
+        document.getElementById('receipt-total').textContent = finalTotal.toFixed(2);
+        document.getElementById('receipt-method').textContent = method;
+    }
+</script>
+
+</body>
+</html>

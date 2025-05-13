@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Navigation</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styles */
+        header {
+            background-color: black;
+            padding: 8px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 15px;
+        }
+
+        nav a:hover {
+            background-color: orange;
+            border-radius: 5px;
+        }
+
+        /* Background image */
+        .background-img {
+            background-image: url('../images/bg1.jpg');
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+            padding: 200px;
+        }
+
+        /* Image container styles */
+        .image-container {
+            margin: 40px;
+            padding: 20px;
+            display: flex;
+            gap: 60px;
+        }
+
+        .image-container img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+            border-radius: 10px;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+            box-shadow: 10px 10px 10px orange;
+        }
+
+        .promotion {
+            display: inline-block;
+            text-align: center;
+            margin: 10px;
+            margin-left: 30px;
+            width: 400px;
+            vertical-align: top;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .promotion img {
+            padding: 20px;
+            max-width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .promotion h2, .promotion p, .promotion button {
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ff5722;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e64a19;
+        }
+
+        /* For responsiveness */
+        @media (max-width: 768px) {
+            .promotion {
+                width: 100%;
+                margin: 10px;
+            }
+        }
+
+        .notifications {
+            margin-top: 20px;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .notifications h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .notifications input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .notifications button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .notifications button:hover {
+            background-color: #555;
+        }
+
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-content .menu,
+        .footer-content .links,
+        .footer-content .extra-links,
+        .footer-content .hours {
+            width: 22%;
+            margin: 10px;
+        }
+
+        .footer-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-content ul li {
+            margin: 5px 0;
+        }
+
+        .footer-content a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-content .hours p {
+            font-size: 16px;
+        }
+
+        .social-media {
+            margin-top: 20px;
+        }
+
+        .social-media a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .social-media a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/6bf31ad91f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="promotions.html">Promotions</a>
+            <a href="menu.html">Menu</a>
+        </nav>
+    </header>
+    <div class="background-img">
+        <div class="content">
+            <h1>Welcome To Tasty Bites Restaurant</h1>
+            <p>Discover our services and offerings!</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="../images/item1.jpg" alt="Item 1">
+        <img src="../images/meals.jpg" alt="Meals">
+        <img src="../images/item3.jpg" alt="Item 3">
+        <img src="../images/item4.jpg" alt="Item 4">
+        <img src="../images/chappathi.jpg" alt="Chappathi">
+        <img src="../images/break.jpg" alt="Break">
+    </div>
+    <div class="promotion">
+        <img src="../images/i1.jpg" alt="Taco Promo">
+        <h2>Special Offer</h2>
+        <p>Up to 50% Off</p>
+        <button class="order-now">Order Now</button>
+    </div>
+    <div class="promotion">
+        <img src="../images/i3.jpg" alt="Enchilada Promo">
+        <h2>Special Offer</h2>
+        <p>Up to 25% Extra</p>
+        <button class="order-now">Order Now</button>
+    </div>
+    <div class="promotion">
+        <img src="../images/i4.jpg" alt="Drink Promo">
+        <h2>Limited Offer</h2>
+        <p>100% Cashback</p>
+        <button class="order-now">Order Now</button>
+    </div>
+    <section class="notifications">
+        <h2>Receive Event Notifications</h2>
+        <input type="email" id="email-input" placeholder="Enter your email">
+        <button id="subscribe-button">Subscribe</button>
+        <p id="success-message" style="color: green; display: none;">Thank you for subscribing!</p>
+    </section>
+    <footer>
+        <div class="footer-content">
+            <div class="menu">
+                <h3>Our Menu</h3>
+                <ul>
+                    <li>Taco</li>
+                    <li>Burrito</li>
+                    <li>Nachos</li>
+                    <li>Side Food</li>
+                    <li>Dessert</li>
+                    <li>Drink</li>
+                </ul>
+            </div>
+            <div class="links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="promotions.html">Promotions</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                </ul>
+            </div>
+            <div class="extra-links">
+                <h3>Order Link</h3>
+                <ul>
+                    <li><a href="menu.html">Order Now</a></li>
+                </ul>
+            </div>
+            <div class="hours">
+                <h3>Opening Hours</h3>
+                <p>Everyday: 7:00 am - 10:00 pm</p>
+            </div>
+        </div>
+        <div class="social-media">
+            <i class="fa-brands fa-facebook"></i>
+            <a href="#">Facebook</a>
+            <i class="fa-brands fa-twitter"></i>
+            <a href="#">Twitter</a>
+            <i class="fa-brands fa-instagram"></i>
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+    <script>
+        // Redirect "Order Now" buttons to menu.html
+        const orderButtons = document.querySelectorAll('.order-now');
+        orderButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                window.location.href = 'menu.html';
+            });
+        });
+
+        // Handle "Subscribe" button click
+        const subscribeButton = document.getElementById('subscribe-button');
+        const emailInput = document.getElementById('email-input');
+        const successMessage = document.getElementById('success-message');
+
+        subscribeButton.addEventListener('click', () => {
+            const email = emailInput.value;
+            if (email.trim() === '') {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            successMessage.style.display = 'block';
+            emailInput.value = ''; // Clear email input
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000); // Hide message after 5 seconds
+        });
+    </script>
+</body>
+</html>
